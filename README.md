@@ -46,7 +46,7 @@ Run the app with `npm start`
 
 - You'll then need to check that the user performing an action has access to the relevant permission instead of just checking their role. For example, on `DELETE /posts/3` you'll check that the authenticated user has access to the `DELETE_MY_POST` permission if that post was created by the authenticated user, or the `DELETE_ANY_POST` permission if not.
 
-This is one approach used for fine-tuning user permissions in an app. You could take this one step further by adding a join table to remove the possibility of adding duplicate permission names.
+This is one approach used for fine-tuning user permissions in an app. You could take this one step further by replacing the role enum with a model and adding a join table to remove the possibility of adding duplicate permission names.
 
 **Option 2**
 - Switch Bearer auth for a different style of auth (e.g. OAuth2, passport.js)
