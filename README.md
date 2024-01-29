@@ -2,7 +2,7 @@
 
 > Role-based access control (RBAC) restricts access to all or some features of an application based on a user's role within the application. For example, only users with an `Admin` role should be able to approve or delete other users; only users with a `Dev` role should have access to debug logs.
 >
-> We call this part of auth, "Authorization". Authentication is verifying the credentials of a user, Authorization is verifying that the user can access certain features.
+> We call this part of auth: "Authorization". Authentication is verifying the credentials of a user, Authorization is verifying that the user can access certain features.
 
 ## Learning Objectives
 
