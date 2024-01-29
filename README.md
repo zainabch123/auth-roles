@@ -62,6 +62,8 @@ This is one approach used for fine-tuning user permissions in an app. You could 
 **Option 2**
 - Switch Bearer auth for a different style of auth (e.g. OAuth2, passport.js)
 
+**You might need to change the existing tests to satisfy this extension - do so within reason.**
+
 **Option 3**
 - Create a front-end application to consume this API. You are free to use any technology for this - the only requirements are:
     - registration & login forms
