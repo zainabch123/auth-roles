@@ -30,6 +30,15 @@ Run the app with `npm start`
     - https://www.prisma.io/docs/orm/prisma-schema/data-model/models#defining-enums
 2. Create a migration for your schema changes & regenerate the prisma client. Revisit previous exercises if you need a refresher on the commands needed for this.
 3. Explore the [test/api/routes/user.spec.js](./test/api/routes/user.spec.js) and [test/api/routes/post.spec.js](./test/api/routes/post.spec.js) files to figure out the next steps. The exercise is considered complete when all of the tests pass. You must not change any of the tests.
+    1. Run the tests and try to understand fully what they're asking for
+    2. Try to come up with a plan for which tests you want to pass first and how you might do it. This could be noting down what new routes might be needed, changes that need to be made to existing routes etc.
+    3. This process is equivalent to building an API to an API Spec - this time you're building to a pre-defined set of tests instead
+
+## Testing your work
+
+- First, make sure you have created / setup the test database instance and env var, as described in the "Setting Up" section.
+- Next, run the command `npm run test:migration` - this will run the schema migrations against the test database. **You need to do this after making any schema changes.**
+- Run the test suite with `npm test` for core requirements.
 
 ## Extensions
 
@@ -48,6 +57,8 @@ Run the app with `npm start`
 
 This is one approach used for fine-tuning user permissions in an app. You could take this one step further by replacing the role enum with a model and adding a join table to remove the possibility of adding duplicate permission names.
 
+**You might need to change the existing tests to satisfy this extension - do so within reason. You should try to create your own new tests as well.**
+
 **Option 2**
 - Switch Bearer auth for a different style of auth (e.g. OAuth2, passport.js)
 
@@ -59,11 +70,3 @@ This is one approach used for fine-tuning user permissions in an app. You could 
     - (optional extra) admins can delete posts and users
     - (optional extra) users can delete their own posts
     - (optional extra) user-friendly error messages on the frontend
-
-## Testing your work
-
-- First, make sure you have created / setup the test database instance and env var, as described in the "Setting Up" section.
-- Next, run the command `npm run test:migration` - this will run the schema migrations against the test database. **You only need to do this the one time.**
-
-Now, whenever you want to run tests locally:  
-- Run the test suite with `npm test` for core requirements.
