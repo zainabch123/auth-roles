@@ -33,6 +33,7 @@ Run the app with `npm start`
 
 ## Extensions
 
+**Option 1**
 - Create a front-end application to consume this API. You are free to use any technology for this - the only requirements are:
     - registration & login forms
     - post creation & post list views
@@ -41,6 +42,23 @@ Run the app with `npm start`
     - (optional extra) users can delete their own posts
     - (optional extra) user-friendly error messages on the frontend
 
+**Option 2**
+- Switch Bearer auth for a different style of auth (e.g. OAuth2, passport.js)
+
+**Option 3**
+- Implement a new model named `Permission` which connects roles to specific permissions. Examples dataset:
+
+| id | role | permission  |
+|---|---|---|
+| 1 | ADMIN | DELETE_ANY_USER |
+| 2 | ADMIN | DELETE_ANY_POST |
+| 3 | USER | CREATE_POSTS |
+| 4 | USER | DELETE_MY_POST |
+| 5 | USER | DELETE_MY_USER |
+
+- You'll then need to check that the user performing an action has access to the relevant permission instead of just checking their role. For example, on `DELETE /posts/3` you'll check that the authenticated user has access to the `DELETE_MY_POST` permission if that post was created by the authenticated user, or the `DELETE_ANY_POST` permission if not.
+
+This is one approach used for fine-tuning user permissions in an app.
 
 ## Testing your work
 
