@@ -46,7 +46,7 @@ Run the app with `npm start`
 - Switch Bearer auth for a different style of auth (e.g. OAuth2, passport.js)
 
 **Option 3**
-- Implement a new model named `Permission` which connects roles to specific permissions. Examples dataset:
+- Implement a new model named `Permission` which connects roles to specific permissions. Example dataset:
 
 | id | role | permission  |
 |---|---|---|
