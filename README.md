@@ -37,6 +37,9 @@ Run the app with `npm start`
     - registration & login forms
     - post creation & post list views
     - a page that only admins can access to view a list of users
+    - (optional extra) admins can delete posts and users
+    - (optional extra) users can delete their own posts
+    - (optional extra) user-friendly error messages on the frontend
 
 
 ## Testing your work
