@@ -14,7 +14,7 @@
 
 1. Create a new database instance in ElephantSQL and create a schema called 'prisma' in it
     - `create schema prisma;`
-2. Rename the `.env.example` file to `.env`
+2. <u>**Copy**</u> the `.env.example` file and rename your copy to `.env`
 3. Edit the `DATABASE_URL` variable in `.env`, swapping `YOUR_DATABASE_URL` for the URL of the database you just created. Leave `?schema=prisma` at the end.
 4. Edit the `SHADOW_DATABASE_URL` variable in `.env`, swapping `YOUR_SHADOW_DATABASE_URL` for the URL of the shadow database you created in the earlier exercises. Leave `?schema=shadow` at the end.
 5. If you have not previously done so (e.g. for a past exercise), create another separate **TEST** database instance. Make sure you create a schema called 'prisma' in it.
