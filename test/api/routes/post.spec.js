@@ -56,7 +56,7 @@ describe("Post Endpoint", () => {
 
             const response = await supertest(app)
                 .delete(`/posts/${post.id}`)
-                .auth(token)
+                .auth(token, {type: 'bearer'})
                 .send()
             
             expect(response.status).toEqual(200)
@@ -71,7 +71,7 @@ describe("Post Endpoint", () => {
 
             const response = await supertest(app)
                 .delete(`/posts/${post.id}`)
-                .auth(token)
+                .auth(token, {type: 'bearer'})
                 .send()
             
             expect(response.status).toEqual(200)
@@ -91,7 +91,7 @@ describe("Post Endpoint", () => {
 
             const response = await supertest(app)
                 .delete(`/posts/${post.id}`)
-                .auth(token)
+                .auth(token, {type: 'bearer'})
                 .send()
             
             expect(response.status).toEqual(403)
