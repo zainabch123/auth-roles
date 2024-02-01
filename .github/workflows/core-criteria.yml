@@ -47,4 +47,8 @@ jobs:
         cache: 'npm'
     - run: npm ci
     - run: npm run test:migration
+      env:
+        JWT_SECRET: ${{ secrets.JWT_SECRET }}
     - run: npx jest --bail -i test/api/routes
+      env:
+        JWT_SECRET: ${{ secrets.JWT_SECRET }}
