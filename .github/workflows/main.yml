@@ -37,6 +37,7 @@ jobs:
     env:
       DATABASE_URL: postgresql://postgres:postgres@localhost:5432/test?schema=prisma
       TEST_DATABASE_URL: postgresql://postgres:postgres@localhost:5432/test?schema=prisma
+      JWT_SECRET: ${{ secrets.JWT_SECRET }}
     steps:
     - uses: actions/checkout@v4
     - name: Use Node.js ${{ matrix.node-version }}
