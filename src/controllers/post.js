@@ -34,24 +34,13 @@ const deletePost = async (req, res) => {
   try {
     const id = Number(req.params.id);
 
-    const token = req.headers.authorization.split(" ")[1];
-
-    const decoded = jwt.verify(token, secret);
-
-    const user = await prisma.user.findUnique({
-      where: {
-        id: decoded.sub,
-      },
-    });
-
     const post = await prisma.post.findUnique({
       where: {
         id: id,
       },
     });
 
-    // only ADMIN users can make this request
-    if (user.role !== "ADMIN" && user.id !== post.userId) {
+    if (req.user.role !== "ADMIN" && req.user.id !== post.userId) {
       return res
         .status(403)
         .json({ error: "Unauthorized. You are not an admin." });
@@ -60,8 +49,16 @@ const deletePost = async (req, res) => {
     const deletedPost = await deletePostdb(id);
 
     return res.status(200).json({ post: deletedPost });
-  } catch (err) {
-    console.log("Error:", err);
+  } catch (e) {
+    if (e instanceof PrismaClientKnownRequestError) {
+      if (e.code === "P2025") {
+        return res
+          .status(409)
+          .json({ error: "A user with the provided ID does not exist" });
+      }
+    }
+
+    res.status(500).json({ error: e.message });
   }
 };
 

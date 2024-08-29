@@ -38,24 +38,7 @@ const createUser = async (req, res) => {
 
 const getAllUsers = async (req, res) => {
   try {
-    const token = req.headers.authorization.split(" ")[1];
-
-    const decoded = jwt.verify(token, secret);
-
-    const user = await prisma.user.findUnique({
-      where: {
-        id: decoded.sub,
-      },
-    });
-
-    // only ADMIN users can make this request
-    if (user.role !== "ADMIN") {
-      return res
-        .status(403)
-        .json({ error: "Unauthorized. You are not an admin." });
-    }
-
-    console.log(req);
+    console.log(req.header);
 
     const allUsers = await getAllUserdb();
 
@@ -69,28 +52,23 @@ const deleteUser = async (req, res) => {
   try {
     const id = Number(req.params.id);
 
-    const token = req.headers.authorization.split(" ")[1];
-
-    const decoded = jwt.verify(token, secret);
-
-    const user = await prisma.user.findUnique({
-      where: {
-        id: decoded.sub,
-      },
-    });
-
-    // only ADMIN users can make this request
-    if (user.role !== "ADMIN" && user.id !== id) {
-      return res
-        .status(403)
-        .json({ error: "Unauthorized. You are not an admin." });
+    if (req.user.role !== "ADMIN" && req.user.id !== id) {
+      return res.status(403).json({ error: "You are not authrorized." });
     }
 
     const deletedUser = await deleteUserdb(id);
 
     return res.status(200).json({ user: deletedUser });
-  } catch (err) {
-    console.log("Error", err);
+  } catch (e) {
+    if (e instanceof PrismaClientKnownRequestError) {
+      if (e.code === "P2025") {
+        return res
+          .status(404)
+          .json({ error: "A user with the provided id does not exist" });
+      }
+    }
+
+    res.status(500).json({ error: e.message });
   }
 };
 
