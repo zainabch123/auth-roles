@@ -19,7 +19,7 @@ describe("User Endpoint", () => {
             expect(response.body.user).not.toEqual(undefined)
             expect(response.body.user.id).not.toEqual(undefined)
             expect(response.body.user.username).toEqual(request.username)
-            expect(response.body.user.role).toEqual('USER')
+            expect(response.body.user.role.name).toEqual('USER')
         })
 
         it("will return 400 if one of the required fields is missing", async () => {

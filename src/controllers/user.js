@@ -6,7 +6,6 @@ const {
   deleteUserdb,
 } = require("../domains/user.js");
 const secret = process.env.JWT_SECRET;
-const prisma = require("../utils/prisma");
 
 const createUser = async (req, res) => {
   const { username, password, role } = req.body;
@@ -32,14 +31,12 @@ const createUser = async (req, res) => {
       }
     }
 
-    res.status(500).json({ error: e.message });
+    console.log("Error", e);
   }
 };
 
 const getAllUsers = async (req, res) => {
   try {
-    console.log(req.header);
-
     const allUsers = await getAllUserdb();
 
     return res.status(200).json({ users: allUsers });
@@ -52,7 +49,7 @@ const deleteUser = async (req, res) => {
   try {
     const id = Number(req.params.id);
 
-    if (req.user.role !== "ADMIN" && req.user.id !== id) {
+    if (req.user.role.name !== "ADMIN" && req.user.id !== id) {
       return res.status(403).json({ error: "You are not authrorized." });
     }
 

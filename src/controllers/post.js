@@ -40,7 +40,7 @@ const deletePost = async (req, res) => {
       },
     });
 
-    if (req.user.role !== "ADMIN" && req.user.id !== post.userId) {
+    if (req.user.role.name !== "ADMIN" && req.user.id !== post.userId) {
       return res
         .status(403)
         .json({ error: "Unauthorized. You are not an admin." });
